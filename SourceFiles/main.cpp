@@ -1,11 +1,41 @@
 #include "tgaimage.h"
-
+#include <iostream>
 const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red   = TGAColor(255, 0,   0,   255);
+
+/// <summary>
+/// In this mthd we use a linear weight interpolations with range 0 - 1 with steps of 0.1.but this 
+/// causes breaks and all///
+/// But the pixels or steps is known. Which is the number of pixels right ? Think about it
+/// the number input is nothing but x,y so if we just move from 1 to next as they are pixels 
+/// that;s all the  steps.
+/// </summary>
+/// <param name="x0"></param>
+/// <param name="y0"></param>
+/// <param name="x1"></param>
+/// <param name="y1"></param>
+/// <param name="image"></param>
+/// <param name="color"></param>
+void line1(int x0 , int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
+{
+	for (float t=0;t<=1;t+=0.01)
+	{
+	//	std::cout << t<<"\n";
+		int lineX = x0 + (x1 - x0) * t;
+		int lineY = y0 +  (y1 - y0)*t;
+		std::cout << lineX <<"," << lineY << "\n";
+		image.set(lineX,lineY,color);
+	}
+}
+
+
 
 int main(int argc, char** argv) {
 	TGAImage image(100, 100, TGAImage::RGB);
 	image.set(52, 41, red);
+
+	line1(13, 20, 80, 40, image, white);
+	
 	image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
 	image.write_tga_file("output.tga");
 	return 0;

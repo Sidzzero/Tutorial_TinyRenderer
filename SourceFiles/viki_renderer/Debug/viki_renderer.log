@@ -1,5 +1,5 @@
 ﻿  main.cpp
-  tgaimage.cpp
-  viki_renderer.cpp
-  Generating Code...
+D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(8,29): warning C4305: '+=': truncation from 'double' to 'float'
+D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(11,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(12,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   viki_renderer.vcxproj -> D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\viki_renderer\Debug\viki_renderer.exe
