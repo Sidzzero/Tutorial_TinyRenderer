@@ -23,8 +23,54 @@ void line1(int x0 , int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
 	//	std::cout << t<<"\n";
 		int lineX = x0 + (x1 - x0) * t;
 		int lineY = y0 +  (y1 - y0)*t;
-		std::cout << lineX <<"," << lineY << "\n";
+	//	std::cout << lineX <<"," << lineY << "\n";
 		image.set(lineX,lineY,color);
+	}
+}
+
+void line2(int x0 ,int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
+{
+	float t = 0;
+	for (int x = x0 ;x <= x1;x++)
+	{
+		t = (x-x0) / (float)(x1 - x0);
+		int lineY = y0 + (y1 - y0) * t;
+		image.set(x,lineY,color);
+	}
+}
+
+void line3(int x0 , int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
+{
+	//Check if which to use as steep X or Y by finding which changes really fast.
+	//Reason we do this is because if x move fast (low lenght) but y moves slow (more lenght) we 
+	//are bound to X to control Y and we now have fewer points. To overcome this we 
+	// a simple swap and this fixes it !
+	bool stepWithX = true;
+	if (std::abs(x0 - x1) < std::abs(y0 - y1))
+	{
+		stepWithX = false;
+		std::swap(x0, y0);
+		std::swap(x1 , y1);
+	}
+
+	//Check if Xo is greater than x1 then we swap so it always draws from lower to higher !
+	//And since X will be proper by now we can just check that !
+	if (x0>x1)
+	{
+		std::swap(x0, x1);
+		std::swap(y0 , y1);
+	}
+	float t = 0;
+	for (int x = x0; x <= x1; x++)
+	{
+		t = (x - x0) / (float)(x1 - x0);
+		int lineY = y0 + (y1 - y0) * t;
+
+		if(stepWithX)
+			image.set(x, lineY, color);
+		else
+		image.set(lineY,x,  color);
+
 	}
 }
 
@@ -32,9 +78,14 @@ void line1(int x0 , int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
 
 int main(int argc, char** argv) {
 	TGAImage image(100, 100, TGAImage::RGB);
-	image.set(52, 41, red);
+	//image.set(52, 41, red);
+	for (int i = 0; i < 1000000; i++)
+	{
 
-	line1(13, 20, 80, 40, image, white);
+	line3(13, 20, 80, 40, image, white);
+	line3(20, 13, 40, 80, image, red);
+	line3(80, 40, 13, 20, image, red);
+	}
 	
 	image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
 	image.write_tga_file("output.tga");
