@@ -1,9 +1,6 @@
-﻿  main.cpp
-D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(21,29): warning C4305: '+=': truncation from 'double' to 'float'
-D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(24,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(25,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(37,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\main.cpp(67,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  tgaimage.cpp
+  viki_renderer.cpp
+  Generating Code...
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
 main.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:REF' specification
   viki_renderer.vcxproj -> D:\PersonalWork\Tutorial_TinyRenderer\SourceFiles\viki_renderer\Debug\viki_renderer.exe
