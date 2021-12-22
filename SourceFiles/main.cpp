@@ -23,7 +23,7 @@ void line1(int x0 , int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
 	//	std::cout << t<<"\n";
 		int lineX = x0 + (x1 - x0) * t;
 		int lineY = y0 +  (y1 - y0)*t;
-	//	std::cout << lineX <<"," << lineY << "\n";
+		std::cout << lineX <<"," << lineY << "\n";
 		image.set(lineX,lineY,color);
 	}
 }
@@ -79,12 +79,14 @@ void line3(int x0 , int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
 int main(int argc, char** argv) {
 	TGAImage image(100, 100, TGAImage::RGB);
 	//image.set(52, 41, red);
+	//line2(13, 20, 80, 40, image, white);
+	//line2(20, 13, 40, 80, image, red);
 	for (int i = 0; i < 1000000; i++)
 	{
 
-	line3(13, 20, 80, 40, image, white);
-	line3(20, 13, 40, 80, image, red);
-	line3(80, 40, 13, 20, image, red);
+		line3(13, 20, 80, 40, image, white);
+		line3(20, 13, 40, 80, image, red);
+		line3(80, 40, 13, 20, image, red);
 	}
 	
 	image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
