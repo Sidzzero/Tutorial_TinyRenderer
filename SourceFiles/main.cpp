@@ -1,7 +1,13 @@
 #include "tgaimage.h"
+#include "viki_renderer/Model.h"
 #include <iostream>
+
 const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red   = TGAColor(255, 0,   0,   255);
+
+Model *model = nullptr;
+const int width = 800;
+const int height = 800;
 
 /// <summary>
 /// In this mthd we use a linear weight interpolations with range 0 - 1 with steps of 0.1.but this 
@@ -77,7 +83,9 @@ void line3(int x0 , int y0 , int x1 , int y1 , TGAImage &image , TGAColor color)
 
 
 int main(int argc, char** argv) {
-	TGAImage image(100, 100, TGAImage::RGB);
+//	TGAImage image(100, 100, TGAImage::RGB);
+	 TGAImage image(width, height, TGAImage::RGB);
+	/*
 	//image.set(52, 41, red);
 	//line2(13, 20, 80, 40, image, white);
 	//line2(20, 13, 40, 80, image, red);
@@ -91,6 +99,30 @@ int main(int argc, char** argv) {
 	
 	image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
 	image.write_tga_file("output.tga");
+	*/
+	
+	
+//Model loading
+	model = new Model("obj/model.obj");
+
+	
+	for (int i = 0; i < model->nfaces(); i++) {
+		std::vector<int> face = model->face(i);
+		for (int j = 0; j < 3; j++) {
+			Vec3f v0 = model->vert(face[j]);
+			Vec3f v1 = model->vert(face[(j + 1) % 3]);
+			int x0 = (v0.x + 1.) * width / 2.;
+			int y0 = (v0.y + 1.) * height / 2.;
+			int x1 = (v1.x + 1.) * width / 2.;
+			int y1 = (v1.y + 1.) * height / 2.;
+			line3(x0, y0, x1, y1, image, white);
+		}
+	}
+
+	image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
+	image.write_tga_file("output_Model.tga");
+	delete model;
+
 	return 0;
 }
 

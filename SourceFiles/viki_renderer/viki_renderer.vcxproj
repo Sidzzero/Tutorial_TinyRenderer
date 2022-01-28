@@ -143,10 +143,13 @@
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\tgaimage.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="viki_renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\tgaimage.h" />
+    <ClInclude Include="geometry.h" />
+    <ClInclude Include="Model.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
